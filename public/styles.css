@@ -1,0 +1,12 @@
+body {
+    background-color: olivedrab;
+}
+
+body h1{
+    color:whitesmoke;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body div{
+    border: solid black 3px;
+}
