@@ -1,5 +1,5 @@
 body {
-    background-color: olivedrab;
+    background-color: skyblue;
 }
 
 body h1{
@@ -10,3 +10,67 @@ body h1{
 body div{
     border: solid black 3px;
 }
+
+#PhotoContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 10px 10px;
+}
+
+#uploadedPhoto{
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px;
+    width: 250px;
+    height: 300px;
+}
+
+#EditedPhoto{
+    margin: 1px 1px;
+    padding: 1px 1px;
+    width: 250px;
+    height: 250px;
+}
+
+#EditedPhotoContainer{
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px;
+    width: 250px;
+    height: 300px;
+}
+
+#downloadBTN{}
+
+#FilterContainer{
+    display: Flex;
+    Flex-direction: row ;
+    Flex-wrap: row;
+    justify-content: center;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px;
+
+}
+
+.filterBoxes{
+    margin: 10px 10px 10px 10px;
+    width: 75px;
+    height: 75px;
+}
+
+/*scrolling banner*/
+.scrolling-banner {
+    display: inline-block;
+    white-space: nowrap;
+    animation: floatText 15s infinite linear;
+    padding-left: 100%; /*Initial offset*/
+  }
+  .sitemessage:hover {
+    animation-play-state: paused;
+  }
+  @keyframes floatText {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+/*end scrolling banner*/
