@@ -17,6 +17,15 @@ export default class App extends React.Component {
 //     this.ClickHandle = this.ClickHandle.bind(this);
 // }
 
+// I need to write a function that can capture the req.file.path to update the file name of the image and swap out the uplaod form with the image.
+
+//the next function should populate the img on the edited side
+
+//I need a function that can update the img filter on the click of a button. THis should be an onClick that will Change the styling
+
+//I need a function that can handle the download button on click. It should allow us to dowload the image on click.
+
+
     render() {
         return(
         <div>

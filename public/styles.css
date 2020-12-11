@@ -1,4 +1,4 @@
-body {
+/* body {
     background-color: skyblue;
 }
 
@@ -59,12 +59,13 @@ body div{
 }
 
 /*scrolling banner*/
-.scrolling-banner {
+/* .scrolling-banner {
     display: inline-block;
     white-space: nowrap;
     animation: floatText 15s infinite linear;
     padding-left: 100%; /*Initial offset*/
-  }
+  /* }
+
   .sitemessage:hover {
     animation-play-state: paused;
   }
@@ -73,4 +74,4 @@ body div{
       transform: translateX(-100%);
     }
   }
-/*end scrolling banner*/
+end scrolling banner */
