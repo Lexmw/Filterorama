@@ -1,46 +1,69 @@
-/* body {
-    background-color: skyblue;
+body {
+    background-color: plum;
+    max-height: 95%;
 }
 
 body h1{
-    color:whitesmoke;
+    color:purple;
+    font-size: 22px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-body div{
-    border: solid black 3px;
+#content-border{
+    border: solid white 3px;
+    margin: 0px 30px;
+    border-radius: 5px;
+    max-height: 95vh;
+}
+
+#main-container{
+    background-color: white;
+    border-radius: 5px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 90vh;
 }
 
 #PhotoContainer{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 10px 0px 10px 0px;
+    /* margin: 10px 0px 10px 0px; */
     padding: 10px 10px;
+    width: 70%;
 }
 
-#uploadedPhoto{
+.image-boxes{
+    display: flex;
+    align-content: center;
+    border: solid lightgrey 1px;
+    align-items: center;
+    width: 50%;
+    justify-content: center;
+}
+
+#output{
     margin: 10px 10px 10px 10px;
     padding: 10px 10px;
     width: 250px;
-    height: 300px;
+    height: auto;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-#EditedPhoto{
-    margin: 1px 1px;
-    padding: 1px 1px;
-    width: 250px;
-    height: 250px;
-}
-
-#EditedPhotoContainer{
-    margin: 10px 10px 10px 10px;
+#edited-photo{
+    margin: 12px 10px 10px 10px;
     padding: 10px 10px;
     width: 250px;
-    height: 300px;
+    height: auto;
 }
 
-#downloadBTN{}
+#edited-photo:hover {
+    opacity: 0.7;
+}
 
 #FilterContainer{
     display: Flex;
@@ -52,26 +75,116 @@ body div{
 
 }
 
-.filterBoxes{
-    margin: 10px 10px 10px 10px;
-    width: 75px;
-    height: 75px;
+#downloadBTN{
+    display: block;
+    margin-left: 20px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 16px;
 }
 
-/*scrolling banner*/
-/* .scrolling-banner {
-    display: inline-block;
-    white-space: nowrap;
-    animation: floatText 15s infinite linear;
-    padding-left: 100%; /*Initial offset*/
-  /* }
+.filterBoxes{
+    background: url(./assets/filterImage.jpg) no-repeat center;
+    background-size: cover;
+    margin: 0px 25px;
+    border-radius: 5px;    
+    width: 75px;
+    height: 75px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
 
-  .sitemessage:hover {
-    animation-play-state: paused;
+.filterBoxes:hover {opacity: 0.7;}
+
+.filterBoxes:active {
+  transform: translateY(4px);
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
   }
-  @keyframes floatText {
-    to {
-      transform: translateX(-100%);
+  
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+  
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+  
+  /* Add Animation */
+  .modal-content, #caption {  
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+  }
+  
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
     }
   }
-end scrolling banner */

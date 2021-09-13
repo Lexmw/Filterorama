@@ -19,12 +19,8 @@
   },
   "homepage": "https://github.com/Lexmw/Filterorama#readme",
   "dependencies": {
-    "axios": "^0.21.0",
     "express": "^4.17.1",
-    "multer": "^1.4.2",
-    "parcel": "^1.12.4",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "public": "^0.1.5",
     "uploads": "0.0.1"
   }
 }
