@@ -6,13 +6,22 @@
     <title>FilterORama</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 <body>
     <div id="content-border">
         <div id="main-container">
+
             <div class='scrolling-banner' style='text-align:center;'>
                 <h1>Filteroama Your Favorite Photo Editing App!</h1>
             </div>
+
+            <div id="button-container">
+                <p><label class="button" for="file" style="cursor:pointer;display:none;" id="top-upload-button" >Upload New Image</label></p>
+                <p><label class="button" id="downloadBTN" onclick=download(fileUrl,fileName)>Download Edited Photo</label></p>
+            </div>
+
             <div id="PhotoContainer">
                 <div class="image-boxes">
                     <input type="file"  accept="image/*" name="image" id="file"  onchange=loadFile(event) style= "display:none"/>
@@ -23,70 +32,20 @@
                     <img id="edited-photo"/>
                 </div>
             </div>
-            <button id="downloadBTN" onclick=download(fileUrl,fileName)>Download Edited Photo</button>
+
             <div id='FilterContainer'>
-                <div class="filterBoxes" onclick=Filter1() style="filter:grayscale(100%);"></div>
-                <div class="filterBoxes" onclick=Filter2() style="filter:sepia(100%);"></div>
-                <div class="filterBoxes" onclick=Filter3() style="filter:saturate(8);"></div>
+                <div class="filterBoxes"></div>
+                <div class="filterBoxes" style="filter:sepia(100%);"></div>
+                <div class="filterBoxes" style="filter:grayscale(100%);"></div>
+                <div class="filterBoxes" style="filter:saturate(8);"></div>
             </div>
         </div>
+
         <div id="myModal" class="modal">
             <span class="close">&times;</span>
             <img class="modal-content" id="img01">
           </div>
     </div>
 </body>
-<script>
-const image = document.getElementById('output');
-const uploadButton = document.getElementById('upload-button');
-const editImage = document.getElementById('edited-photo');
-let fileUrl;
-let fileName;
-
-const loadFile = function(event) {
-        uploadButton.style.display = "none";
-        image.style.display = "block";
-        image.src = URL.createObjectURL(event.target.files[0]);
-        editImage.src = URL.createObjectURL(event.target.files[0])
-        fileUrl = URL.createObjectURL(event.target.files[0]);
-        fileName = event.target.files[0].name;
-    };
-
-const Filter1 = () => {
-        editImage.style.filter = "grayscale(100%)";
-    }
-
-const Filter2 = () => {
-        editImage.style.filter = "sepia(100%)";
-    }
-const Filter3 = () => {
-        editImage.style.filter = "saturate(8)";
-    }
-
-const download = () => {
-  let a = document.createElement("a");
-  a.href = fileUrl;
-  a.setAttribute("download", `${fileName} Edited with FilterOrama`);
-  a.click();
-}
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("edited-photo");
-var modalImg = document.getElementById("img01");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
-</script>
+<script src="src/index.js"></script>
 </html>

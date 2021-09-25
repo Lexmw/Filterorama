@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/Lexmw/Filterorama#readme",
   "dependencies": {
+    "canvas2image": "^1.0.5",
     "express": "^4.17.1",
+    "html2canvas": "^1.3.2",
     "public": "^0.1.5",
     "uploads": "0.0.1"
   }
