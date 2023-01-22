@@ -17,17 +17,37 @@ const loadFile = function (event) {
   fileName = event.target.files[0].name;
 };
 
-const AddFilter = (filterParam) => {
+//turn object values into a string
+const objectToString = (obj) => {
+  let array = [];
+
+  for (const [key, value] of Object.entries(obj)) {
+    array.push(`${key}(${value})`);
+  };
+
+  return array.join(' ');
+};
+
+const ApplyFilter = (filterParam) => {
     editImage.style.filter = filterParam;
     PhotoFilter = filterParam;
-    console.log(filterParam);
-}
+};
 
-document.getElementsByClassName("filterBoxes")[0].addEventListener("click", () => AddFilter("none"));
-document.getElementsByClassName("filterBoxes")[1].addEventListener("click", () => AddFilter("sepia(100%)"));
-document.getElementsByClassName("filterBoxes")[2].addEventListener("click", () => AddFilter("grayscale(100%)"));
-document.getElementsByClassName("filterBoxes")[3].addEventListener("click", () => AddFilter("saturate(8)"));
+//Remove filter from list 
+const removeFilter = (elemTitle) => {
+  let filterContainer = document.getElementById("FilterContainer");
+  let filter = document.querySelector(`[title="${elemTitle}"]`);
+  filterContainer.removeChild(filter);
+};
 
+//Grab the filter boxes by the className, then dynamically place them on the page as new ones are added
+Array.from(document.getElementsByClassName("filterBoxes")).map((box, index) => {
+  box.addEventListener("click", () => ApplyFilter(box.attributes.title.nodeValue));
+  box.firstChild.addEventListener("click", () => removeFilter(box.attributes.title.nodeValue));
+});
+
+
+//Download the image to local computer
 const download = () => {
   let img = new Image();
   img.src = document.getElementById("edited-photo").src;
@@ -36,7 +56,6 @@ const download = () => {
   let canvas = document.createElement("canvas");
 
   // Wait till the image is loaded.
-  console.log(fileName)
   img.onload = function () {
     rotateImage();
     saveImage(img.src.replace(/^.*[\\\/]/, ""));
@@ -56,7 +75,7 @@ const download = () => {
     ctx.drawImage(img, -img.width / 2, -img.height / 2);
   };
 
-  let saveImage = (img_name) => {
+let saveImage = (img_name) => {
     let a = document.createElement("a");
     a.href = canvas.toDataURL("image/jpg");
     a.download = img_name;
@@ -65,23 +84,78 @@ const download = () => {
   };
 };
 
-// Get the modal
-var modal = document.getElementById("myModal");
+// Show image in modal
+let modal = document.getElementById("myModal");
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("edited-photo");
-var modalImg = document.getElementById("img01");
+let img = document.getElementById("edited-photo");
+let modalImg = document.getElementById("img01");
 
 img.onclick = function(){
     modalImg.style.filter = PhotoFilter;
     modalImg.src = this.src;
     modal.style.display = "block";
-}
+};
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
+};
+
+//Show modal to create new filter
+let filterModal = document.getElementById('FilterModal');
+let plusBox = document.getElementsByClassName('plusBox')[0];
+let addButton = document.getElementsByClassName('addButton')[0];
+let close = document.getElementsByClassName("closeFilterModal")[0];
+
+plusBox.onclick = function(){
+  filterModal.style.display = "block";
+};
+
+addButton.onclick = function(){
+  filterModal.style.display = "none";
+  addNewFilter();
 }
+
+close.onclick = function(){
+  filterModal.style.display = "none";
+}
+
+//In Filter Modal grab the value of slider, display it next to it, update the filter on the image, then store values in object
+let scaleValues = {};
+let imagePlaceHolder = document.getElementById('IMGPlaceHolder');
+
+const filterScaleValues = (scaleName, outputName) => {
+  const scale = document.getElementById(scaleName);
+  const output = document.getElementById(outputName);
+  let array = [];
+  let scaleUnit = scaleName == 'blur' ? 'px':scaleName == 'hue-rotate'?'deg':'%';
+
+  output.innerHTML = `${scale.value}${scaleUnit}`;
+  scaleValues[scaleName] = `${scale.value}${scaleUnit}`;
+
+  imagePlaceHolder.style.filter = `${objectToString(scaleValues)}`;
+};
+
+//Add new filter to the main page
+const addNewFilter = () => {
+  let filterContainer = document.getElementById("FilterContainer");
+  let element = document.createElement("div");
+  let cross = document.createElement("div");
+
+  element.classList.add("filterBoxes");
+  element.title = objectToString(scaleValues);
+  element.style.filter = objectToString(scaleValues);
+  element.addEventListener("click", () => ApplyFilter(objectToString(scaleValues)));
+
+  cross.classList.add("cross");
+  cross.addEventListener("click", () => removeFilter(objectToString(scaleValues)));
+  element.appendChild(cross);
+
+  filterContainer.appendChild(element);
+}
+
+// What to add... Ability to have the filters persist (use local storage), Mobile Compatibility(?)
