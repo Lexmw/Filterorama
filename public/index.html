@@ -34,17 +34,82 @@
             </div>
 
             <div id='FilterContainer'>
-                <div class="filterBoxes"></div>
-                <div class="filterBoxes" style="filter:sepia(100%);"></div>
-                <div class="filterBoxes" style="filter:grayscale(100%);"></div>
-                <div class="filterBoxes" style="filter:saturate(8);"></div>
+                <button onclick="" class="plusBox"></button>
+                <div class="filterBoxes" title="none"><div class="cross"></div></div>
+                <div class="filterBoxes" title="sepia(100%)" style="filter:sepia(100%);"><div class="cross"></div></div>
+                <div class="filterBoxes" title="grayscale(100%)" style="filter:grayscale(100%);"><div class="cross"></div></div>
+                <div class="filterBoxes" title="saturate(8)" style="filter:saturate(8);"><div class="cross"></div></div>
             </div>
         </div>
 
         <div id="myModal" class="modal">
             <span class="close">&times;</span>
             <img class="modal-content" id="img01">
-          </div>
+        </div>
+
+        <div id="FilterModal">
+            <span class="closeFilterModal close">&times;</span>
+            <h3>Create Your Own Filter</h3>
+            <div class="RangeContainer">
+                <div class="RangeContainer">
+                    <div>
+                        <p>grayscale</p>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="grayscale" oninput="filterScaleValues('grayscale','grayscaledemo')">
+                        <p>Value : <span id="grayscaledemo" class="filterValue"></span> </p>
+                    </div>
+    
+                    <div>
+                        <p>saturate</p>
+                        <input type="range" min="0" max="100" step="1" value="100" class="slider" id="saturate" oninput="filterScaleValues('saturate','saturatedemo')">
+                        <p>Value : <span id="saturatedemo" class="filterValue"></span> </p>
+                    </div>
+        
+                    <div>
+                        <p>sepia</p>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="sepia" oninput="filterScaleValues('sepia','sepiademo')">
+                        <p>Value : <span id="sepiademo" class="filterValue"></span> </p>
+                    </div>
+                    
+                    <div>
+                        <p>blur</p>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="blur" oninput="filterScaleValues('blur','blurdemo')">
+                        <p>Value : <span id="blurdemo" class="filterValue"></span> </p>
+                    </div>
+                    
+                    <div>
+                        <p>brightness</p>
+                        <input type="range" min="0" max="100" value="100" class="slider" id="brightness" oninput="filterScaleValues('brightness','brightnessdemo')">
+                        <p>Value : <span id="brightnessdemo" class="filterValue"></span> </p>
+                    </div>
+                    
+                    <div>
+                        <p>contrast</p>
+                        <input type="range" min="0" max="100" value="100" class="slider" id="contrast" oninput="filterScaleValues('contrast','contrastdemo')">
+                        <p>Value : <span id="contrastdemo" class="filterValue"></span> </p>
+                    </div>
+                    
+                    <div>
+                        <p>hue-rotate</p>
+                        <input type="range" min="0" max="360" value="0" class="slider" id="hue-rotate" oninput="filterScaleValues('hue-rotate','hue-rotatedemo')">
+                        <p>Value : <span id="hue-rotatedemo" class="filterValue"></span> </p>
+                    </div>
+                    
+                    <div>
+                        <p>opacity</p>
+                        <input type="range" min="0" max="100" value="100" class="slider" id="opacity" oninput="filterScaleValues('opacity','opacitydemo')">
+                        <p>Value : <span id="opacitydemo" class="filterValue"></span> </p>
+                    </div>
+                    
+                    <div>
+                        <p>invert</p>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="invert" oninput="filterScaleValues('invert','invertdemo')">
+                        <p>Value : <span id="invertdemo" class="filterValue"></span> </p>
+                    </div>
+                </div>
+                <div id="IMGPlaceHolder" class="IMGPlaceHolder"></div>
+            </div>
+            <button class="addButton">Add Filter</button>
+        </div>
     </div>
 </body>
 <script src="src/index.js"></script>

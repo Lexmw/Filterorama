@@ -1,23 +1,16 @@
 body {
-    background-color: plum;
+    background-color: rgb(59, 2, 106);
     max-height: 95%;
 }
 
 body h1{
-    color:purple;
-    font-size: 22px;
+    color:rgb(59, 2, 106);
+    font-size: 25px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#content-border{
-    border: solid white 3px;
-    margin: 0px 30px;
-    border-radius: 5px;
-    max-height: 95vh;
-}
-
 #main-container{
-    background-color: white;
+    background-color: rgb(245, 255, 255);
     border-radius: 5px;
     margin: 20px;
     display: flex;
@@ -25,6 +18,7 @@ body h1{
     align-items: center;
     justify-content: space-between;
     max-height: 90vh;
+    min-width: min-content;
 }
 
 #PhotoContainer{
@@ -46,7 +40,7 @@ body h1{
 .image-boxes{
     display: flex;
     align-content: center;
-    border: solid lightgrey 1px;
+    border: solid rgb(130, 130, 130) 1px;
     align-items: center;
     width: 50%;
     justify-content: center;
@@ -79,7 +73,6 @@ body h1{
     justify-content: center;
     margin: 10px 10px 10px 10px;
     padding: 10px 10px;
-
 }
 
 .button{
@@ -89,9 +82,9 @@ body h1{
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    background-color: #ddd;
+    background-color: rgb(130, 130, 130);
     border: none;
-    color: black;
+    color: white;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -102,7 +95,7 @@ body h1{
 }
 
 .filterBoxes{
-    background: url(./assets/filterImage.jpg) no-repeat center;
+    background: url(./assets/best_cities_italy.jpg) no-repeat center;
     background-size: cover;
     margin: 0px 25px;
     border-radius: 5px;    
@@ -114,15 +107,89 @@ body h1{
 
 .filterBoxes:hover {opacity: 0.7;}
 
-.filterBoxes:active {
-  transform: translateY(4px);
+.cross {
+  display: none;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  left: 80%;
+  top: -10%;
+  background-color: #b9b9b9;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  border-radius: 100%;
+}
+
+.cross:before, .cross:after {
+ content: "";
+ position: absolute;
+ z-index: -1;
+ background: black;
+}
+
+.cross:before {
+  left: 50%;
+  width: 12%;
+  margin-left: -7%;
+  margin-top: 20%;
+  height: 60%;
+}
+
+.cross:after {
+  top: 50%;
+  height: 12%;
+  margin-top: -7%;
+  margin-left: 20%;
+  width: 60%;
+}
+
+.filterBoxes:hover > .cross {
+  display: block;
+}
+
+.plusBox {
+  margin: 0px 25px;
+  border-radius: 5px;    
+  width: 75px;
+  height: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  position:relative;    
+  background-color: rgb(245, 255, 255);
+}
+.plusBox::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: rgb(151, 150, 150);
+  height: 5px;
+  margin-top: -2.5px;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+  z-index: 9;
+  border-radius: 5px;
+}
+.plusBox::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: rgb(151, 150, 150);
+  width: 5px;
+  margin-left: -2.5px;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+  z-index: 9;
+  border-radius: 5px;
 }
 
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 999; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -181,6 +248,16 @@ body h1{
     font-weight: bold;
     transition: 0.3s;
   }
+
+  .closeFilterModal {
+    position: absolute;
+    top: 15px;
+    right: 80px;
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
   
   .close:hover,
   .close:focus {
@@ -195,3 +272,46 @@ body h1{
       width: 100%;
     }
   }
+
+  /* Filter Modal */
+
+  #FilterModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 25px;/* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(245, 255, 255);
+    text-align: center;
+  }
+
+  .RangeContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .IMGPlaceHolder {
+    background: url(./assets/best_cities_italy.jpg) no-repeat center;
+    width: 40vw;
+    height: 30vw;
+    margin: 20px auto;
+  }
+
+  .addButton {
+    font-size: medium;
+    margin: 45px auto;
+    padding: 10px;
+    width: 40%;
+    background-color: rgb(59, 2, 106);
+    color: lightblue;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  }
+  
