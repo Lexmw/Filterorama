@@ -98,7 +98,8 @@ body h1{
     background: url(./assets/best_cities_italy.jpg) no-repeat center;
     background-size: cover;
     margin: 0px 25px;
-    border-radius: 5px;    
+    border-radius: 5px; 
+    border: 2px black solid;   
     width: 75px;
     height: 75px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
