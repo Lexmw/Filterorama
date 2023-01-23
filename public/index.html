@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,107 +11,122 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 <body>
-    <div id="content-border">
-        <div id="main-container">
+    <div id="main-container">
+        <div class='header' style='text-align:center;'>
+            <h1>Filter-</h1>
+            <h1>O</h1>
+            <h1>-RAMA</h1>
+        </div>
 
-            <div class='scrolling-banner' style='text-align:center;'>
-                <h1>Filteroama Your Favorite Photo Editing App!</h1>
+        <div id="button-container">
+            <p><label class="button" for="file" style="cursor:pointer;display:none;" id="top-upload-button">Upload
+                    Image</label></p>
+            <p><label class="button" id="downloadBTN" onclick=download(fileUrl,fileName)>Download Edited Photo</label>
+            </p>
+        </div>
+
+        <div id="PhotoContainer">
+            <div class="image-boxes" id="upload-image">
+                <input type="file" accept="image/*" name="image" id="file" onchange=loadFile(event)
+                    style="display:none" />
+                <p><label for="file" style="cursor:pointer;" id="upload-button">Upload Image</label></p>
+                <img id="output" style="display:none" />
             </div>
-
-            <div id="button-container">
-                <p><label class="button" for="file" style="cursor:pointer;display:none;" id="top-upload-button" >Upload New Image</label></p>
-                <p><label class="button" id="downloadBTN" onclick=download(fileUrl,fileName)>Download Edited Photo</label></p>
-            </div>
-
-            <div id="PhotoContainer">
-                <div class="image-boxes">
-                    <input type="file"  accept="image/*" name="image" id="file"  onchange=loadFile(event) style= "display:none"/>
-                    <p><label for="file" style="cursor:pointer;" id="upload-button">Upload Image</label></p>
-                    <img id="output" style= "display:none"/>
-                </div>
-                <div class="image-boxes">                   
-                    <img id="edited-photo"/>
-                </div>
-            </div>
-
-            <div id='FilterContainer'>
-                <button onclick="" class="plusBox"></button>
-                <div class="filterBoxes" title="none"><div class="cross"></div></div>
-                <div class="filterBoxes" title="sepia(100%)" style="filter:sepia(100%);"><div class="cross"></div></div>
-                <div class="filterBoxes" title="grayscale(100%)" style="filter:grayscale(100%);"><div class="cross"></div></div>
-                <div class="filterBoxes" title="saturate(8)" style="filter:saturate(8);"><div class="cross"></div></div>
+            <div class="image-boxes">
+                <img id="edited-photo" />
             </div>
         </div>
 
-        <div id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="img01">
+        <div id='FilterContainer'>
+            <button onclick="" class="plusBox"></button>
+            <div class="filterBoxes" title="none">
+                <div class="cross"></div>
+            </div>
+            <div class="filterBoxes" title="sepia(100%)" style="filter:sepia(100%);">
+                <div class="cross"></div>
+            </div>
+            <div class="filterBoxes" title="grayscale(100%)" style="filter:grayscale(100%);">
+                <div class="cross"></div>
+            </div>
+            <div class="filterBoxes" title="saturate(8)" style="filter:saturate(8);">
+                <div class="cross"></div>
+            </div>
         </div>
+    </div>
 
-        <div id="FilterModal">
-            <span class="closeFilterModal close">&times;</span>
-            <h3>Create Your Own Filter</h3>
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <div id="FilterModal">
+        <span class="closeFilterModal close">&times;</span>
+        <h3>Create Your Own Filter</h3>
+        <div class="RangeContainer mobile-modal-container">
             <div class="RangeContainer">
-                <div class="RangeContainer">
-                    <div>
-                        <p>grayscale</p>
-                        <input type="range" min="0" max="100" value="0" class="slider" id="grayscale" oninput="filterScaleValues('grayscale','grayscaledemo')">
-                        <p>Value : <span id="grayscaledemo" class="filterValue"></span> </p>
-                    </div>
-    
-                    <div>
-                        <p>saturate</p>
-                        <input type="range" min="0" max="100" step="1" value="100" class="slider" id="saturate" oninput="filterScaleValues('saturate','saturatedemo')">
-                        <p>Value : <span id="saturatedemo" class="filterValue"></span> </p>
-                    </div>
-        
-                    <div>
-                        <p>sepia</p>
-                        <input type="range" min="0" max="100" value="0" class="slider" id="sepia" oninput="filterScaleValues('sepia','sepiademo')">
-                        <p>Value : <span id="sepiademo" class="filterValue"></span> </p>
-                    </div>
-                    
-                    <div>
-                        <p>blur</p>
-                        <input type="range" min="0" max="100" value="0" class="slider" id="blur" oninput="filterScaleValues('blur','blurdemo')">
-                        <p>Value : <span id="blurdemo" class="filterValue"></span> </p>
-                    </div>
-                    
-                    <div>
-                        <p>brightness</p>
-                        <input type="range" min="0" max="100" value="100" class="slider" id="brightness" oninput="filterScaleValues('brightness','brightnessdemo')">
-                        <p>Value : <span id="brightnessdemo" class="filterValue"></span> </p>
-                    </div>
-                    
-                    <div>
-                        <p>contrast</p>
-                        <input type="range" min="0" max="100" value="100" class="slider" id="contrast" oninput="filterScaleValues('contrast','contrastdemo')">
-                        <p>Value : <span id="contrastdemo" class="filterValue"></span> </p>
-                    </div>
-                    
-                    <div>
-                        <p>hue-rotate</p>
-                        <input type="range" min="0" max="360" value="0" class="slider" id="hue-rotate" oninput="filterScaleValues('hue-rotate','hue-rotatedemo')">
-                        <p>Value : <span id="hue-rotatedemo" class="filterValue"></span> </p>
-                    </div>
-                    
-                    <div>
-                        <p>opacity</p>
-                        <input type="range" min="0" max="100" value="100" class="slider" id="opacity" oninput="filterScaleValues('opacity','opacitydemo')">
-                        <p>Value : <span id="opacitydemo" class="filterValue"></span> </p>
-                    </div>
-                    
-                    <div>
-                        <p>invert</p>
-                        <input type="range" min="0" max="100" value="0" class="slider" id="invert" oninput="filterScaleValues('invert','invertdemo')">
-                        <p>Value : <span id="invertdemo" class="filterValue"></span> </p>
-                    </div>
+                <div>
+                    <p>grayscale <span id="grayscaledemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="grayscale"
+                        oninput="filterScaleValues('grayscale','grayscaledemo')">
                 </div>
-                <div id="IMGPlaceHolder" class="IMGPlaceHolder"></div>
+
+                <div>
+                    <p>saturate <span id="saturatedemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" step="1" value="100" class="slider" id="saturate"
+                        oninput="filterScaleValues('saturate','saturatedemo')">
+                </div>
+
+                <div>
+                    <p>sepia <span id="sepiademo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="sepia"
+                        oninput="filterScaleValues('sepia','sepiademo')">
+                </div>
+
+                <div>
+                    <p>blur <span id="blurdemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="blur"
+                        oninput="filterScaleValues('blur','blurdemo')">
+                </div>
+
+                <div>
+                    <p>brightness <span id="brightnessdemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="100" class="slider" id="brightness"
+                        oninput="filterScaleValues('brightness','brightnessdemo')">
+                </div>
+
+                <div>
+                    <p>contrast <span id="contrastdemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="100" class="slider" id="contrast"
+                        oninput="filterScaleValues('contrast','contrastdemo')">
+                </div>
+
+                <div>
+                    <p>hue-rotate <span id="hue-rotatedemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="360" value="0" class="slider" id="hue-rotate"
+                        oninput="filterScaleValues('hue-rotate','hue-rotatedemo')">
+                </div>
+
+                <div>
+                    <p>opacity <span id="opacitydemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="100" class="slider" id="opacity"
+                        oninput="filterScaleValues('opacity','opacitydemo')">
+                </div>
+
+                <div>
+                    <p>invert <span id="invertdemo" class="filterValue"></span></p>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="invert"
+                        oninput="filterScaleValues('invert','invertdemo')">
+                </div>
             </div>
-            <button class="addButton">Add Filter</button>
+            <div id="IMGPlaceHolder" class="IMGPlaceHolder"></div>
         </div>
+        <button class="addButton">Add Filter</button>
+    </div>
+    <div id="footer">
+        <p>Lexius Waltar •</p>
+        <p>Updated January 2023</p>
     </div>
 </body>
 <script src="src/index.js"></script>
+
 </html>
