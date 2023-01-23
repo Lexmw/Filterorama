@@ -138,6 +138,8 @@ const filterScaleValues = (scaleName, outputName) => {
   scaleValues[scaleName] = `${scale.value}${scaleUnit}`;
 
   imagePlaceHolder.style.filter = `${objectToString(scaleValues)}`;
+
+  return;
 };
 
 //Add new filter to the main page
@@ -145,17 +147,21 @@ const addNewFilter = () => {
   let filterContainer = document.getElementById("FilterContainer");
   let element = document.createElement("div");
   let cross = document.createElement("div");
+  let elemAttributes = objectToString(scaleValues);
 
   element.classList.add("filterBoxes");
   element.title = objectToString(scaleValues);
   element.style.filter = objectToString(scaleValues);
-  element.addEventListener("click", () => ApplyFilter(objectToString(scaleValues)));
+  element.addEventListener("click", () => ApplyFilter(elemAttributes));
 
   cross.classList.add("cross");
-  cross.addEventListener("click", () => removeFilter(objectToString(scaleValues)));
+  cross.addEventListener("click", () => removeFilter(elemAttributes));
   element.appendChild(cross);
 
   filterContainer.appendChild(element);
-}
+  scaleValues = {};
+
+  return;
+};
 
 // What to add... Ability to have the filters persist (use local storage), Mobile Compatibility(?)
