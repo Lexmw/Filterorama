@@ -164,4 +164,4 @@ const addNewFilter = () => {
   return;
 };
 
-// What to add... Ability to have the filters persist (use local storage), Mobile Compatibility(?)
+// What to add to be done... Ability to have the filters persist (use local storage), Mobile Styles Compatibility(?)
