@@ -2,10 +2,16 @@ const image = document.getElementById("output");
 const uploadButton = document.getElementById("upload-button");
 const topuploadButton = document.getElementById("top-upload-button");
 const editImage = document.getElementById("edited-photo");
+const instructionsModal = document.getElementById("instructions-modal");
+const instructionsModalClose = document.getElementById("instructions-modal-close");
 
 let fileUrl;
 let fileName;
 let PhotoFilter;
+
+instructionsModalClose.addEventListener("click", () => instructionsModal.style.display = "none");
+instructionsModal.style.display = "block";
+
 
 const loadFile = function (event) {
   uploadButton.style.display = "none";
@@ -164,4 +170,4 @@ const addNewFilter = () => {
   return;
 };
 
-// What to add to be done... Ability to have the filters persist (use local storage), Mobile Styles Compatibility(?)
+// What to add to be done... Ability to have the filters persist (use local storage)

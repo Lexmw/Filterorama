@@ -362,10 +362,48 @@ body h1 {
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+#instructions-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(2, 2, 2, 0.8);
+}
+
+#instructions {
+  width: 45%;
+  background-color: rgb(238, 238, 238);
+  margin: auto auto;
+  text-align: center;
+  padding: 35px;
+  border-radius: 5px;
+  border: rgb(59, 2, 106) 2px solid;
+  -webkit-box-shadow: 7px 1px 23px 6px rgba(227,189,252,0.82);
+  -moz-box-shadow: 7px 1px 23px 6px rgba(227,189,252,0.82);
+  box-shadow: 7px 1px 23px 6px rgba(227,189,252,0.82);
+}
+
+#instructions h2 {
+  color: rgb(59, 2, 106);
+}
+#instructions-modal-close {
+    padding: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 425px) {
   body {
     margin: 0px;
+  }
+
+  #instructions {
+    width: 65%;
   }
 
   #main-container {
